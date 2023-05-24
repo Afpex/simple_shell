@@ -22,7 +22,7 @@ char *_strcpy(char *dest, const char *src);
 char *_strcat(char *dest, const char *src);
 size_t _strlen(const char *str);
 int _strncmp(const char *str1, const char *str2, size_t n);
-char* _strtok(char* str, const char* delim);
+char *_strtok(char *str, const char *delim);
 int _puts(const char *str);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void prompt(char **av, char **env);
