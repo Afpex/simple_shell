@@ -12,6 +12,7 @@
 #include <stddef.h>
 
 extern char **environ;
+int space_check(char *lineptr);
 char *_getenv(const char *name);
 size_t _strcspn(const char *str, const char *rej);
 char *_strdup(const char *str);
