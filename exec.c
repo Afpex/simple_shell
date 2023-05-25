@@ -51,10 +51,12 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 
 	if (_strchr(command, '/'))
 	{
-		if (access(command, F_OK) == 0)
+		if (access(command, X_OK) == 0)
 		{
 			cmd_path = _strdup(command);
 		}
+		else
+			return (NULL);
 	}
 	else
 	{
@@ -64,7 +66,7 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 		{
 			char *temp_path = build_cmd_path(path_parts[i], command);
 
-			if (access(temp_path, F_OK) == 0)
+			if (access(temp_path, X_OK) == 0)
 			{
 				cmd_path = temp_path;
 				break;
@@ -72,6 +74,7 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 			else
 			{
 				free(temp_path);
+				return (NULL);
 			}
 		}
 	}
@@ -137,7 +140,7 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 
 		if (cmd_path == NULL)
 		{
-			size_t err_msg_len = _strlen(argv[0]) + _strlen(": command not found") + 1;
+			size_t err_msg_len = _strlen(argv[0]) + _strlen(": not found") + 1;
 
 			err_msg = malloc(err_msg_len);
 			if (err_msg == NULL)
@@ -146,7 +149,7 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 				exit(EXIT_FAILURE);
 			}
 			_strcpy(err_msg, argv[0]);
-			_strcat(err_msg, ": command not found");
+			_strcat(err_msg, ": not found");
 
 			_puts(err_msg);
 			free(err_msg);

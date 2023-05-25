@@ -32,7 +32,7 @@ void prompt(char **av, char **env)
 			free(lineptr);
 			break;
 		}
-
+		/* cmd_counter++; */
 		lineptr[_strcspn(lineptr, "\n")] = '\0'; /* Remove newline */
 
 		argc = 0;

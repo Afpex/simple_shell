@@ -10,9 +10,9 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stddef.h>
+/* int cmd_counter = 0; */
 
 extern char **environ;
-int space_check(char *lineptr);
 char *_getenv(const char *name);
 size_t _strcspn(const char *str, const char *rej);
 char *_strdup(const char *str);
