@@ -8,9 +8,17 @@
  *
  * Return: Always 0
  */
+
 int main(int ac, char **av, char **env)
 {
+	int status = 0;
+	
 	if (ac == 1)
 		prompt(av, env);
-	return (0);
+	else if (ac == 2)
+		status = atoi(av[1]);
+
+	printf("Exit status: %d\n", status);
+
+	return (status);
 }
