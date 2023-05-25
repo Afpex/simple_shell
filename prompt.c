@@ -25,9 +25,9 @@ void prompt(char **av, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "Shell$ ", 7);
-
+		fflush(stdout);
 		num_char = getline(&lineptr, &n, stdin);
-		if (num_char == -1)
+		if (num_char == EOF)
 		{
 			free(lineptr);
 			break;
@@ -43,6 +43,7 @@ void prompt(char **av, char **env)
 			token = strtok(NULL, " ");
 		}
 		argv[argc] = NULL; /* Set the last element to NULL */
+		if (argc > 0)
 		handle_cmd(argv, env, path_parts, path_index);
 	}
 }
