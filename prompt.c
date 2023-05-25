@@ -30,7 +30,7 @@ void prompt(char **av, char **env)
 		if (num_char == -1)
 		{
 			free(lineptr);
-			exit(EXIT_FAILURE);
+			break;
 		}
 
 		lineptr[_strcspn(lineptr, "\n")] = '\0'; /* Remove newline */
