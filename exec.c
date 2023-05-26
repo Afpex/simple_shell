@@ -45,7 +45,7 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 
 	if (_strchr(command, '/'))
 	{
-		if (access(command, F_OK) == 0)
+		if (access(command, X_OK) == 0)
 		{
 			cmd_path = _strdup(command);
 		}
@@ -58,7 +58,7 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 		{
 			char *temp_path = build_cmd_path(path_parts[i], command);
 
-			if (access(temp_path, F_OK) == 0)
+			if (access(temp_path, X_OK) == 0)
 			{
 				cmd_path = temp_path;
 				break;
