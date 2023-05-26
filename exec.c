@@ -9,6 +9,7 @@
 char *build_cmd_path(char *dir, char *command)
 {
 	char *full_path;
+
 	full_path = malloc(_strlen(dir) + _strlen(command) + 2); /* 1=/n & 1="/"*/
 	_strcpy(full_path, dir);
 	_strcat(full_path, "/");
@@ -24,6 +25,7 @@ char *build_cmd_path(char *dir, char *command)
 void print_environment(char **env)
 {
 	char **envp = env;
+
 	for (; *envp; envp++)
 	{
 		_puts(*envp);
@@ -40,6 +42,7 @@ void print_environment(char **env)
 char *find_cmd_path(char *command, char **path_parts, int path_index)
 {
 	char *cmd_path = NULL;
+
 	if (_strchr(command, '/'))
 	{
 		if (access(command, F_OK) == 0)
@@ -50,9 +53,11 @@ char *find_cmd_path(char *command, char **path_parts, int path_index)
 	else
 	{
 		int i;
+
 		for (i = 0; i < path_index; i++)
 		{
 			char *temp_path = build_cmd_path(path_parts[i], command);
+
 			if (access(temp_path, F_OK) == 0)
 			{
 				cmd_path = temp_path;
@@ -78,6 +83,7 @@ void exec_cmd(char *cmd_path, char **argv, char **env)
 {
 	pid_t child_pid;
 	int status;
+
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -111,8 +117,6 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 
 	if (_strcmp(argv[0], "exit") == 0)
 	{
-		/**
-		 * _puts("Exiting shell...");*/
 		exit(EXIT_SUCCESS);
 	}
 	else if (_strcmp(argv[0], "env") == 0)
@@ -122,9 +126,11 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 	else
 	{
 		char *cmd_path = find_cmd_path(argv[0], path_parts, path_index);
+
 		if (cmd_path == NULL)
 		{
 			size_t err_msg_len = _strlen(argv[0]) + _strlen(": command not found") + 1;
+
 			err_msg = malloc(err_msg_len);
 			if (err_msg == NULL)
 			{
