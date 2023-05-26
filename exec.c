@@ -128,6 +128,8 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 
 	if (_strcmp(argv[0], "exit") == 0)
 	{
+	/**
+	 * _puts("Exiting shell...");*/
 		exit(EXIT_SUCCESS);
 	}
 	else if (_strcmp(argv[0], "env") == 0)
