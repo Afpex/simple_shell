@@ -152,7 +152,7 @@ void handle_cmd(char **argv, char *av, char **env, char **path_parts,
 				perror("Error: Memory allocation failed");
 				exit(EXIT_FAILURE);
 			}
-			_snprintf(err_msg, err_msg_len, "%s:%d:%s: not found",
+			_snprintf(err_msg, err_msg_len, "%s: %d: %s: not found",
 					av, cmd_counter, argv[0]);
 			_puts(err_msg);
 			free(err_msg);
