@@ -106,13 +106,15 @@ void exec_cmd(char *cmd_path, char **argv, char **env)
 }
 /**
  * handle_cmd - handles cmd execution
+ * @av:The array of cmd args.
+ * @cmd_counter: command counter indicating the current cmd no
  * @argv: array of cmd arguments
  * @env: environment variables
  * @path_parts: array of PATH directories
  * @path_index: no of PATH directories
  */
 void handle_cmd(char **argv, char *av, char **env, char **path_parts,
-                int path_index, int cmd_counter)
+		int path_index, int cmd_counter)
 {
 	char *err_msg;
 

@@ -46,7 +46,7 @@ void prompt(char **av, char **env)
 		if (argc > 0)
 			handle_cmd(argv, av[0], env, path_parts, path_index,
 				   cmd_counter);
-			
+
 	}
 }
 
