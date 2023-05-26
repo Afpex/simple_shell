@@ -8,45 +8,44 @@
 
 void prompt(char **av, char **env)
 {
-        char *lineptr = NULL;
-        size_t n = 0;
-        ssize_t num_char;
-        char *argv[MAX_COMMAND];
-        int path_index = 0;
-        char *path_parts[MAX_COMMAND];
-        int argc;
-        char *token;
+	char *lineptr = NULL;
+	size_t n = 0;
+	ssize_t num_char;
+	char *argv[MAX_COMMAND];
+	int path_index = 0;
+	char *path_parts[MAX_COMMAND];
+	int argc;
+	char *token;
 
-        (void) av;
+	(void) av;
 
-        init_path(&path_index, path_parts);
+	init_path(&path_index, path_parts);
 
-        while (1)
-        {
-                if (isatty(STDIN_FILENO))
-                        write(STDOUT_FILENO, "Shell$ ", 7);
-                fflush(stdout);
-                num_char = getline(&lineptr, &n, stdin);
-                if (num_char == EOF)
-                {
-			write(STDOUT_FILENO, "\n", 1);
+	while (1)
+	{
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "Shell$ ", 7);
+		fflush(stdout);
+		num_char = getline(&lineptr, &n, stdin);
+		if (num_char == EOF)
+		{
 			free(lineptr);
-                        break;
-                }
+			break;
+		}
+		/* cmd_counter++; */
+		lineptr[_strcspn(lineptr, "\n")] = '\0'; /* Remove newline */
 
-                lineptr[_strcspn(lineptr, "\n")] = '\0'; /* Remove newline */
-
-                argc = 0;
-                token = strtok(lineptr, " ");
-                while (token != NULL && argc < MAX_COMMAND - 1)
-                {
-                        argv[argc++] = token;
-                        token = strtok(NULL, " ");
-                }
-                argv[argc] = NULL; /* Set the last element to NULL */
-                if (argc > 0)
-                handle_cmd(argv, env, path_parts, path_index);
-        }
+		argc = 0;
+		token = strtok(lineptr, " ");
+		while (token != NULL && argc < MAX_COMMAND - 1)
+		{
+			argv[argc++] = token;
+			token = strtok(NULL, " ");
+		}
+		argv[argc] = NULL; /* Set the last element to NULL */
+		if (argc > 0)
+			handle_cmd(argv, env, path_parts, path_index);
+	}
 }
 
 /**
@@ -59,12 +58,12 @@ void prompt(char **av, char **env)
 
 void init_path(int *path_index, char *path_parts[])
 {
-        char *path = _getenv("PATH");
-        char *part = strtok(path, ":");
+	char *path = _getenv("PATH");
+	char *part = strtok(path, ":");
 
-        while (part != NULL && *path_index < MAX_COMMAND)
-        {
-                path_parts[(*path_index)++] = part;
-                part = strtok(NULL, ":");
-        }
+	while (part != NULL && *path_index < MAX_COMMAND)
+	{
+		path_parts[(*path_index)++] = part;
+		part = strtok(NULL, ":");
+	}
 }

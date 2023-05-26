@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stddef.h>
+/* int cmd_counter = 0; */
 
 extern char **environ;
 char *_getenv(const char *name);
