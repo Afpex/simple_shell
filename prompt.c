@@ -29,7 +29,6 @@ void prompt(char **av, char **env)
 		num_char = getline(&lineptr, &n, stdin);
 		if (num_char == EOF)
 		{
-			write(STDOUT_FILENO, "\n", 1);
 			free(lineptr);
 			break;
 		}
