@@ -140,7 +140,7 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 
                 if (cmd_path == NULL)
                 {
-                        size_t err_msg_len = _strlen(argv[0]) + _strlen(": command not found") + 1;
+                        size_t err_msg_len = _strlen(argv[0]) + _strlen(": not found") + 1;
 
                         err_msg = malloc(err_msg_len);
                         if (err_msg == NULL)
@@ -149,7 +149,7 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
                                 exit(EXIT_FAILURE);
                         }
                         _strcpy(err_msg, argv[0]);
-                        _strcat(err_msg, ": command not found");
+                        _strcat(err_msg, ": not found");
 
                         _puts(err_msg);
                         free(err_msg);
