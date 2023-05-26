@@ -8,15 +8,15 @@
  */
 size_t _strlen(const char *str)
 {
-        size_t len = 0;
+	size_t len = 0;
 
-        while (*str)
-        {
-                len++;
-                str++;
-        }
+	while (*str)
+	{
+		len++;
+		str++;
+	}
 
-        return (len);
+	return (len);
 }
 
 /**
@@ -28,20 +28,20 @@ size_t _strlen(const char *str)
  */
 char *_strcat(char *dest, const char *src)
 {
-        char *ptr = dest;
+	char *ptr = dest;
 
-        while (*dest)
-                dest++;
+	while (*dest)
+		dest++;
 
-        while (*src)
-        {
-                *dest = *src;
-                dest++;
-                src++;
-        }
-        *dest = '\0';
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
 
-        return (ptr);
+	return (ptr);
 }
 
 /**
@@ -56,19 +56,19 @@ char *_strcat(char *dest, const char *src)
 
 int _strncmp(const char *str1, const char *str2, size_t n)
 {
-        size_t i = 0;
+	size_t i = 0;
 
-        while (i < n && str1[i] && str2[i] && str1[i] == str2[i])
-        {
-                i++;
-        }
+	while (i < n && str1[i] && str2[i] && str1[i] == str2[i])
+	{
+		i++;
+	}
 
-        if (i == n)
-        {
-                return (0);
-        }
-        else
-        {
-                return (str1[i] - str2[i]);
-        }
+	if (i == n)
+	{
+		return (0);
+	}
+	else
+	{
+		return (str1[i] - str2[i]);
+	}
 }

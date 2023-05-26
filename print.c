@@ -8,19 +8,19 @@
  */
 int _puts(const char *str)
 {
-        int len = 0;
+	int len = 0;
 
-        while (str[len] != '\0')
-        {
-                len++;
-        }
-        if (write(STDOUT_FILENO, str, len) == -1)
-        {
-                return (-1);
-        }
-        if (write(STDOUT_FILENO, "\n", 1) == -1)
-        {
-                return (-1);
-        }
-        return (len + 1);
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	if (write(STDOUT_FILENO, str, len) == -1)
+	{
+		return (-1);
+	}
+	if (write(STDOUT_FILENO, "\n", 1) == -1)
+	{
+		return (-1);
+	}
+	return (len + 1);
 }

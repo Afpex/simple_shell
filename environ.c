@@ -9,28 +9,28 @@
  */
 char *_getenv(const char *name)
 {
-        char *value = NULL;
-        int i;
+	char *value = NULL;
+	int i;
 
-        if (name == NULL)
-                return (NULL);
+	if (name == NULL)
+		return (NULL);
 
-        for (i = 0; environ[i] != NULL; i++)
-        {
-                char *entry = environ[i];
-                size_t name_len = 0;
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		char *entry = environ[i];
+		size_t name_len = 0;
 
-                /* Calculate the length of the name*/
-                while (entry[name_len] != '=')
-                        name_len++;
+		/* Calculate the length of the name*/
+		while (entry[name_len] != '=')
+			name_len++;
 
-                /* Compare the name with the current environment variable */
-                if (_strncmp(name, entry, name_len) == 0)
-                {
-                        value = entry + name_len + 1;
-                        break;
-                }
-        }
+		/* Compare the name with the current environment variable */
+		if (_strncmp(name, entry, name_len) == 0)
+		{
+			value = entry + name_len + 1;
+			break;
+		}
+	}
 
-        return (value);
+	return (value);
 }
