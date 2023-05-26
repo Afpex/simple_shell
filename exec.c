@@ -123,6 +123,10 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 	{
 		print_environment(env);
 	}
+	else if (_strcmp(argv[0], "alias") == 0)
+	{
+		handle_alias_command(argv);
+	}
 	else
 	{
 		char *cmd_path = find_cmd_path(argv[0], path_parts, path_index);

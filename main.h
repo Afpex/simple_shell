@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <stdarg.h>
 #include <stddef.h>
 
 extern char **environ;
@@ -23,6 +24,11 @@ size_t _strlen(const char *str);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _puts(const char *str);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+ssize_t _fputs(const char *str, int fd);
+int _snprintf(char *str, size_t size, const char *format, ...);
+void handle_alias_command(char **argv);
+void print_all_aliases();
+void handle_single_alias(char *arg);
 void prompt(char **av, char **env);
 char *build_cmd_path(char *dir, char *command);
 void handle_cmd(char **argv, char **env, char **path_parts, int path_index);
