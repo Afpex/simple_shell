@@ -128,7 +128,12 @@ void handle_cmd(char **argv, char **env, char **path_parts, int path_index)
 
 	if (_strcmp(argv[0], "exit") == 0)
 	{
-		exit(EXIT_SUCCESS);
+		int status = 0;
+
+		if (argv[1] != NULL)
+			status = atoi(argv[1]);
+
+		exit(status);
 	}
 	else if (_strcmp(argv[0], "env") == 0)
 	{
