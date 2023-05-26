@@ -44,7 +44,9 @@ void prompt(char **av, char **env)
 		}
 		argv[argc] = NULL; /* Set the last element to NULL */
 		if (argc > 0)
+		{
 			handle_cmd(argv, env, path_parts, path_index);
+		}
 	}
 }
 
