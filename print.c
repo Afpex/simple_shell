@@ -24,3 +24,24 @@ int _puts(const char *str)
 	}
 	return (len + 1);
 }
+
+/**
+ * _puts_stderr - Writes a string to the standard error stream
+ * @str: The string to be written
+ *
+ * Return: On success, the number of characters written. On error, -1 is
+ *         returned and errno is set appropriately.
+ */
+
+int _puts_stderr(const char *str)
+{
+	int z;
+
+	for (z = 0; str[z] != '\0'; z++)
+	{
+		if (write(STDERR_FILENO, &str[z], 1) == -1)
+			return -1;
+	}
+
+	return (z);
+}
